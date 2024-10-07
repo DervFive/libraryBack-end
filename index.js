@@ -1,9 +1,15 @@
 import express from "express";
 import mongoose from "mongoose";
+import cors from "cors"
 import 'dotenv/config'
 
-
+//  Create express app
 const app = express()
+
+
+// Use Middleware 
+app.use(express())
+app.use(cors())
 
 
 try {
