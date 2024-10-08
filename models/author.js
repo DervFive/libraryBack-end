@@ -1,6 +1,6 @@
 // models/author.js
 
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
 const authorSchema = new mongoose.Schema({
   name: {
@@ -19,4 +19,4 @@ const authorSchema = new mongoose.Schema({
   },
 }, { timestamps: true });
 
-module.exports = mongoose.model('Author', authorSchema);
+export const AuthorModel = mongoose.model('Author', authorSchema);

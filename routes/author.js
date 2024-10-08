@@ -1,14 +1,16 @@
 // routes/authorRoutes.js
+import { Router } from 'express';
+import { createAuthor, deleteAuthor, getAllAuthors, getAuthorById, updateAuthor } from '../controllers/author.js';
 
-const express = require('express');
-const router = express.Router();
-const authorController = require('../controllers/author.js'); 
+const router =  Router()
+// const authorController = require('../controllers/author.js');
+ 
 
 // Routes for authors
-router.post('/authors', authorController.createAuthor);
-router.get('/authors', authorController.getAllAuthors);
-router.get('/authors/:id', authorController.getAuthorById);
-router.put('/authors/:id', authorController.updateAuthor);
-router.delete('/authors/:id', authorController.deleteAuthor);
+router.post('/authors', createAuthor);
+router.get('/authors', getAllAuthors);
+router.get('/authors/:id', getAuthorById);
+router.put('/authors/:id', updateAuthor);
+router.delete('/authors/:id',deleteAuthor);
 
-module.exports = router;
+export default router

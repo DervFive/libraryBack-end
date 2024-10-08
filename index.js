@@ -5,6 +5,8 @@ import cors from "cors"
 import 'dotenv/config'
 import reviewRoute from "./routes/review.js";
 import "dotenv/config";
+import cors from "cors";
+import router from "./routes/author.js";
 
 
 
@@ -12,6 +14,7 @@ import "dotenv/config";
 const app = express();
 
 // Use Middleware
+
 app.use(cors());
 app.use(express.json());
 
@@ -21,6 +24,7 @@ app.use(express.json())
 app.use(cors())
 
 app.use(booksRouter,);
+app.use(router);
 app.use(reviewRoute)
 
 try {
