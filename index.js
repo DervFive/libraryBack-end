@@ -21,12 +21,11 @@ app.use(express.json())
 app.use(cors())
 
 app.use(booksRouter,);
-
 app.use(reviewRoute)
 
 try {
   await mongoose.connect(process.env.MONGO_URI);
-  //console.log("Database is connected");
+  console.log("Database is connected");
 } catch (error) {
  
 }
