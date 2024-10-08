@@ -31,10 +31,18 @@ export const updateReview =async (req,res)=>{
         
     }
 }
-export const deleteReview =()=>{
+export const deleteReview = async (req,res,next)=>{
     try {
+        const {id} = req.params;
+        const index = await ReviewModel.findOneAndDelete(id);
+        // if (index) {
+        //     console.log(index)
+        // }else{
+        //     console.log('hii')
+        // }
+
         res.json();
     } catch (error) {
-        
+        next(error)
     }
 }
