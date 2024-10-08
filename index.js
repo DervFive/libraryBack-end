@@ -3,17 +3,20 @@ import { booksRouter } from "./routes/books.js";
 import mongoose from "mongoose";
 import "dotenv/config";
 import cors from "cors";
+import router from "./routes/author.js";
 
 
 //  Create express app
 const app = express();
 
 // Use Middleware
+
 app.use(cors());
 app.use(express.json());
 
 
 app.use(booksRouter,);
+app.use(router);
 
 try {
   await mongoose.connect(process.env.MONGO_URI);

@@ -1,7 +1,8 @@
 // controllers/authorController.js
 
-const Author = require('../models/author.js');
-const Joi = require('joi');
+const Author = import ('../models/author.js');
+import { AuthorModel } from '../models/author.js'
+import Joi from 'joi';
 
 // schema for validation
 const authorValidationSchema = Joi.object({
@@ -9,9 +10,9 @@ const authorValidationSchema = Joi.object({
   bio: Joi.string().optional(),
   website: Joi.string().uri().optional(),
 });
-
+                  
 // Create a new author
-exports.createAuthor = async (req, res, next) => {
+export const createAuthor = async (req, res, next) => {
   try {
     const { error } = authorValidationSchema.validate(req.body);
     if (error) {
@@ -28,7 +29,7 @@ exports.createAuthor = async (req, res, next) => {
 };
 
 // Get all authors
-exports.getAllAuthors = async (req, res, next) => {
+export const getAllAuthors = async (req, res, next) => {
   try {
     const authors = await Author.find();
 
@@ -39,7 +40,7 @@ exports.getAllAuthors = async (req, res, next) => {
 };
 
 // Get a specific author by ID
-exports.getAuthorById = async (req, res, next) => {
+export const getAuthorById = async (req, res, next) => {
   try {
     const authorId = req.params.id;
     const author = await Author.findById(authorId);
@@ -55,7 +56,7 @@ exports.getAuthorById = async (req, res, next) => {
 };
 
 // Update author details
-exports.updateAuthor = async (req, res, next) => {
+export const updateAuthor = async (req, res, next) => {
   try {
     const { error } = authorValidationSchema.validate(req.body);
     if (error) {
@@ -76,7 +77,7 @@ exports.updateAuthor = async (req, res, next) => {
 };
 
 // Delete an author
-exports.deleteAuthor = async (req, res, next) => {
+export const deleteAuthor = async (req, res, next) => {
   try {
     const authorId = req.params.id;
     const deletedAuthor = await Author.findByIdAndDelete(authorId);
