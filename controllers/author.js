@@ -31,7 +31,7 @@ export const createAuthor = async (req, res, next) => {
 // Get all authors
 export const getAllAuthors = async (req, res, next) => {
   try {
-    const authors = await Author.find();
+    const authors = await authors.find();
 
     res.status(200).json({ status: 'success', data: authors });
   } catch (err) {

@@ -3,7 +3,8 @@ import { Router } from 'express';
 import { createAuthor, deleteAuthor, getAllAuthors, getAuthorById, updateAuthor } from '../controllers/author.js';
 
 const router =  Router()
-const authorController = require('../controllers/author.js'); 
+// const authorController = require('../controllers/author.js');
+ 
 
 // Routes for authors
 router.post('/authors', createAuthor);
