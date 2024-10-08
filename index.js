@@ -1,24 +1,26 @@
 import express from "express";
+import { booksRouter } from "./routes/books.js";
 import mongoose from "mongoose";
-import cors from "cors"
-import 'dotenv/config'
+import "dotenv/config";
+import cors from "cors";
+
 
 //  Create express app
-const app = express()
+const app = express();
+
+// Use Middleware
+app.use(cors());
+app.use(express.json());
 
 
-// Use Middleware 
-app.use(express())
-app.use(cors())
-
+app.use(booksRouter,);
 
 try {
-    await mongoose.connect(process.env.MONGO_URI)
-    console.log('Database is connected')
+  await mongoose.connect(process.env.MONGO_URI);
+  //console.log("Database is connected");
 } catch (error) {
-    console.log('Database failed')
-    
+ 
 }
 
-const port = 3003
-app.listen(port,() => console.log(`app is listening on port 3003`))
+const port = 3003;
+app.listen(port, () => console.log(`app is listening on port 3003`));
