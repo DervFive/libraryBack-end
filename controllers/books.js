@@ -20,16 +20,35 @@ export const getAllBooks = async (req, res, next) => {
 export const addBook = async (req, res, next) => {
   try {
     await Library.create(req.body);
-    res.status(200).json("add a book");
+    res.status(200).json("added a book");
   } catch (error) {
     next(error);
   }
 };
 
-export const updateBook = (req, res, next) => {
-  res.status(201).json("update a book");
+export const updateBook = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const index = await Library.findOneAndUpdate(id);
+
+    if (!updateBook) {
+      return res .status(404).json({ status: `error`, message: `book not found` });
+    }
+    res.status(201).json({ status: `success`, data: `updatedBook` });
+  } catch (error) {
+    next(error);
+  }
 };
 
-export const deleteBook = (req, res, next) => {
-  res.status(201).json("delete a book");
+export const deleteBook = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const index = await Library.findOneAndDelete(id);
+
+    if (!deleteBook) {
+      return res.status(404).json({ status: `error`, message: `book not found` });
+    }
+
+    res.status(201).json({ status: `success`, data: `deletedBook` });
+  } catch (error) {}
 };
