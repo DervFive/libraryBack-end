@@ -4,8 +4,6 @@ import mongoose from "mongoose";
 import cors from "cors"
 import 'dotenv/config'
 import reviewRoute from "./routes/review.js";
-import "dotenv/config";
-import cors from "cors";
 import router from "./routes/author.js";
 
 
@@ -17,11 +15,6 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-
-
-// Use Middleware 
-app.use(express.json())
-app.use(cors())
 
 app.use(booksRouter,);
 app.use(router);

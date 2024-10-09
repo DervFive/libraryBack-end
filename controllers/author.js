@@ -1,6 +1,6 @@
 // controllers/authorController.js
 
-const Author = import ('../models/author.js');
+// const Author = import ('../models/author.js');
 import { AuthorModel } from '../models/author.js'
 import Joi from 'joi';
 
@@ -19,7 +19,7 @@ export const createAuthor = async (req, res, next) => {
       return res.status(400).json({ status: 'error', message: error.details[0].message });
     }
 
-    const author = new Author(req.body);
+    const author = new AuthorModel(req.body);
     const savedAuthor = await author.save();
 
     res.status(201).json({ status: 'success', data: savedAuthor });
@@ -31,7 +31,7 @@ export const createAuthor = async (req, res, next) => {
 // Get all authors
 export const getAllAuthors = async (req, res, next) => {
   try {
-    const authors = await authors.find();
+    const authors = await AuthorModel.find();
 
     res.status(200).json({ status: 'success', data: authors });
   } catch (err) {
@@ -43,9 +43,9 @@ export const getAllAuthors = async (req, res, next) => {
 export const getAuthorById = async (req, res, next) => {
   try {
     const authorId = req.params.id;
-    const author = await Author.findById(authorId);
+    const author = await AuthorModel.findById(authorId);
 
-    if (author) {
+    if (!author) {
       return res.status(404).json({ status: 'error', message: 'Author not found' });
     }
 
@@ -64,12 +64,11 @@ export const updateAuthor = async (req, res, next) => {
     }
 
     const authorId = req.params.id;
-    const updatedAuthor = await Author.findByIdAndUpdate(authorId, req.body, { new: true });
+    const updatedAuthor = await AuthorModel.findByIdAndUpdate(authorId, req.body, { new: true });
 
     if (!updatedAuthor) {
       return res.status(404).json({ status: 'error', message: 'Author not found' });
     }
-
     res.status(200).json({ status: 'success', data: updatedAuthor });
   } catch (err) {
     next(err);
@@ -80,12 +79,11 @@ export const updateAuthor = async (req, res, next) => {
 export const deleteAuthor = async (req, res, next) => {
   try {
     const authorId = req.params.id;
-    const deletedAuthor = await Author.findByIdAndDelete(authorId);
+    const deletedAuthor = await AuthorModel.findByIdAndDelete(authorId);
 
-    if (deletedAuthor) {
+    if (!deletedAuthor) {
       return res.status(404).json({ status: 'error', message: 'Author not found' });
     }
-
     res.status(200).json({ status: 'success', message: 'Author deleted successfully' });
   } catch (err) {
     next(err);

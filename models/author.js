@@ -13,8 +13,8 @@ const authorSchema = new mongoose.Schema({
     type: String,
     trim: true,
   },
-  website: {
-    type: String,
+  YearPublished: {
+    type: Number,
     trim: true,
   },
 }, { timestamps: true });
