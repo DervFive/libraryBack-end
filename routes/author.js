@@ -10,7 +10,7 @@ const router =  Router()
 router.post('/authors', createAuthor);
 router.get('/authors', getAllAuthors);
 router.get('/authors/:id', getAuthorById);
-router.put('/authors/:id', updateAuthor);
+router.patch('/authors/:id', updateAuthor);
 router.delete('/authors/:id',deleteAuthor);
 
 export default router
