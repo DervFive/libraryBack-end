@@ -9,7 +9,7 @@ booksRouter.get('/library',getAllBooks)
 
 booksRouter.post('/library',addBook)
 
-booksRouter.put("/library/:id", updateBook);
+booksRouter.patch("/library/:id", updateBook);
 
 booksRouter.delete("/library/:id", deleteBook);
 
