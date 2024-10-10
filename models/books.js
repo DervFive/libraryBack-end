@@ -1,9 +1,9 @@
 import { Schema, model, Types } from "mongoose";
 
-const librarySchema = new Schema({
+const BookSchema = new Schema({
   title: { type: String, required: true },
 
-  //author: { type: Types.ObjectId, ref: "Author" },
+  author: { type: Types.ObjectId, ref: "Author" },
 
   genre: { type: String, required: true },
 
@@ -18,4 +18,4 @@ const librarySchema = new Schema({
   datePublished: {type: String, required: true}
 });
 
-export const Library = model("library", librarySchema);
+export const Books = model("Book", BookSchema);
