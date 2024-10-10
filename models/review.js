@@ -1,14 +1,13 @@
-import { Schema,model,Types } from "mongoose";
+import { Schema, model, Types } from "mongoose";
 
 const reviewSchema = new Schema({
-    rating:{type:Number},
-    comment:{type:String},
-    datecreated:{type:Date}
-   // book:{type:Types.ObjectId,ref:'Book'},
-})
+    rating: { type: Number },
+    comment: { type: String },
+    book: { type: Types.ObjectId, ref: 'Book' },
+},{timestamps:true})
 
 
 
 
 
-export const ReviewModel =model('Review',reviewSchema)
+export const ReviewModel = model('Review', reviewSchema)

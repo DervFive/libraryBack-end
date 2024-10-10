@@ -23,7 +23,6 @@ export const getOneReview = async (req, res, next) => {
 export const addReview = async (req, res, next) => {
     try {
         await ReviewModel.create(req.body)
-        res.status(201).json('Review is added');
         res.status(200).json({ success: true, message: 'successfully'});
     } catch (error) {
         next(error)
@@ -55,18 +54,4 @@ export const deleteReview = async (req, res, next) => {
     } catch (error) {
         next(error)
     }
-
-    // try {
-    //     const { id } = req.params;
-    //     const index = await ReviewModel.findOneAndDelete(id);
-    //     // if (index) {
-    //     //     console.log(index)
-    //     // }else{
-    //     //     console.log('hii')
-    //     // }
-
-    //     res.json();
-    // } catch (error) {
-    //     next(error)
-    // }
 }
