@@ -8,7 +8,8 @@ import Joi from 'joi';
 const authorValidationSchema = Joi.object({
   name: Joi.string().max(100).required(),
   bio: Joi.string().optional(),
-  website: Joi.string().uri().optional(),
+  website: Joi.string().optional(),
+  YearPublished: Joi.number().optional()
 });
                   
 // Create a new author
