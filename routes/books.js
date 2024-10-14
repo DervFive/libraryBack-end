@@ -1,8 +1,10 @@
 import { Router } from "express";
-import { addBook, deleteBook, getAllBooks, getBook, updateBook } from "../controllers/books.js";
+import { addBook, deleteBook, getAllBooks, getBook, searchBook, updateBook } from "../controllers/books.js";
 import { validateBooksAdd, validateBooksUpdate } from "../middlewares/booksMiddleware.js";
 
 export const booksRouter = Router()
+
+booksRouter.get('/Books/search',searchBook);
 
 booksRouter.get('/Books/:id',getBook);
 
