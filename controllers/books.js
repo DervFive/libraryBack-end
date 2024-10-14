@@ -3,7 +3,7 @@ import { Books } from "../models/books.js";
 export const getBook = async (req, res, next) => {
   try {
     const getId = req.params.id;
-    const oneBook = await Books.findById(getId);
+    const oneBook = await Books.findById(getId).populate('author');
 
     if (!oneBook) {
       return res.status(404).json({ success: false, message: `book not found` });
@@ -31,6 +31,27 @@ export const addBook = async (req, res, next) => {
     next(error);
   }
 };
+
+export const searchBook = async(req,res,next) =>{
+  try {
+     const {title,author,genre} = req.query;
+     let query ={};
+
+     if(title)query.title = {$regex:title,$options:'i'}
+     if(author)query.author = {$regex:author,$options:'i'}
+     if(genre)query.genre = {$regex:genre,$options:'i'}
+
+     const books =await Books.find(query);
+     if(books.length===0){
+     return res.status(404).json({ success: false, message: `No search result found` });
+     }
+     res.status(200).json(books)
+  } catch (error) {
+    res.status(500).json({message:error.message})
+  }
+}
+
+
 
 export const updateBook = async (req, res, next) => {
   try {

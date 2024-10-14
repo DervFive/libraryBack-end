@@ -29,8 +29,7 @@ bash
 npm install
 or if you're using Yarn:
 
-bash
-yarn install
+
 4. Set up Environment Variables
 Create a .env file in the root directory and add the following environment variables:
 
