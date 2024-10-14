@@ -8,6 +8,9 @@ export const getAllReviews = async (req, res, next) => {
         next(error)
     }
 }
+
+
+
 export const getOneReview = async (req, res, next) => {
     try {
         const getId = req.params.id;
@@ -20,10 +23,12 @@ export const getOneReview = async (req, res, next) => {
         next(error);
     }
 }
+
+
 export const addReview = async (req, res, next) => {
     try {
         await ReviewModel.create(req.body)
-        res.status(200).json({ success: true, message: 'successfully'});
+        res.status(200).json({ success: true, message:'successfully'});
     } catch (error) {
         next(error)
     }
