@@ -2,7 +2,6 @@ import express from "express";
 import { booksRouter } from "./routes/books.js";
 import mongoose from "mongoose";
 import cors from "cors";
-import 'dotenv/config'
 import reviewRoute from "./routes/review.js";
 import router from "./routes/author.js";
 import errorHandler from "./middlewares/errorHandler.js";

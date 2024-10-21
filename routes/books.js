@@ -1,19 +1,35 @@
 import { Router } from "express";
-import { addBook, deleteBook, getAllBooks, getBook, searchBook, updateBook } from "../controllers/books.js";
-import { validateBooksAdd, validateBooksUpdate } from "../middlewares/booksMiddleware.js";
+import {
+  addBook,
+  deleteBook,
+  getAllBooks,
+  getBook,
+  searchBook,
+  updateBook,
+} from "../controllers/books.js";
+import {
+  validateBooksAdd,
+  validateBooksUpdate,
+} from "../middlewares/booksMiddleware.js";
+import { coverUpload } from "../middlewares/upload.js";
 
-export const booksRouter = Router()
+export const booksRouter = Router();
 
-booksRouter.get('/Books/search',searchBook);
+booksRouter.get("/Books/search", searchBook);
 
-booksRouter.get('/Books/:id',getBook);
+booksRouter.get("/Books/:id", getBook);
 
-booksRouter.get('/Books',getAllBooks);
+booksRouter.get("/Books", getAllBooks);
 
-booksRouter.post('/Books',validateBooksAdd , addBook);
+booksRouter.post(
+  "/Books",
+  coverUpload.single("cover"),
+  validateBooksAdd,
+  addBook
+);
 
-booksRouter.patch("/Books/:id",validateBooksUpdate, updateBook);
+booksRouter.patch("/Books/:id", validateBooksUpdate, updateBook);
 
 booksRouter.delete("/Books/:id", deleteBook);
 
-export default booksRouter
+export default booksRouter;

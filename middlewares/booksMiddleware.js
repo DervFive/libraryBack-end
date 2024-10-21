@@ -3,15 +3,15 @@ import mongoose from "mongoose";
 
 //validation schema using joi
 const booksUpdateSchema = Joi.object({
-    title: Joi.string().required(),
-    author: Joi.string().required(),
-    genre: Joi.string().required(),
-    summary: Joi.string().required(),
-    cover: Joi.string().required(),
-    description: Joi.string().required(),
-    language: Joi.string().required(),
-    datePublished: Joi.string().required()
-})
+  title: Joi.string().required(),
+  author: Joi.string().required(),
+  genre: Joi.string().required(),
+  summary: Joi.string().required(),
+  cover: Joi.string(),
+  description: Joi.string().required(),
+  language: Joi.string().required(),
+  datePublished: Joi.string().required(),
+});
 
 export const validateBooksUpdate = (req, res, next) => {
   const { error } = booksUpdateSchema.validate(req.body);
